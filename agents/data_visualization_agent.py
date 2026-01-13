@@ -34,7 +34,7 @@ class DataVisualizationAgent(BaseAgent):
 
         df = None
 
-        # 1️⃣ Try to load CSV if provided
+        # Try to load CSV if provided
         if files:
             try:
                 csv_path = list(files.values())[0]
@@ -47,7 +47,7 @@ class DataVisualizationAgent(BaseAgent):
                     agent_name=self.name,
                 )
 
-        # 2️⃣ Otherwise try to get data from CodeInterpreter context
+        # try to get data from CodeInterpreter context
         elif "codeinterpreter_data" in context:
             data = context["codeinterpreter_data"]
             if isinstance(data, dict) and "dataframe" in data:
@@ -64,7 +64,7 @@ class DataVisualizationAgent(BaseAgent):
         x_col = df.columns[0]
         y_col = df.columns[1]
 
-        # 3️⃣ Generate plot
+        # Generate plot
         try:
             plt.figure(figsize=(8, 5))
 
@@ -80,6 +80,7 @@ class DataVisualizationAgent(BaseAgent):
                     data={},
                     message=f"Unsupported plot type: {plot_type}",
                     agent_name=self.name,
+                    next_agent="AnswerSynthesizer",
                 )
 
             plt.xlabel(x_col)

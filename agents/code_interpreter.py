@@ -68,7 +68,7 @@ class CodeInterpreterAgent(BaseAgent):
                     data={"analysis": response_text},
                     message="Analysis completed",
                     agent_name=self.name,
-                    next_agent="AnswerSynthesiser",
+                    next_agent="DataVisualizer",
                 )
 
             # Execute code
@@ -86,7 +86,7 @@ class CodeInterpreterAgent(BaseAgent):
                 },
                 message="Code execution completed",
                 agent_name=self.name,
-                next_agent="AnswerSynthesiser",
+                next_agent="DataVisualizer",
             )
 
         except Exception as e:
