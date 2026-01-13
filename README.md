@@ -1,3 +1,15 @@
+## Forked from @https://github.com/Knighthawk-Leo/WorkShopTemplate
+
+### Thanks to @https://github.com/Knighthawk-Leo/WorkShopTemplate for the repository and the session
+
+**Prompt Engineering Patterns**
+
+1. Role Prompting - Make the model assume itself as someone or something
+2. Step by Step Thinking - Give enough context with only few prompts to save space in context
+3. Structured Outputs - The output from the LLM should be in the correct structure and format that the user needs. Ex - Pick a number between 10 to 100
+   Answer should be 90 ( just the number and not an entire line or paragraph like - I pick the number 90 - the line makes it difficult for the user to extract his desired output. )
+4. Setting Constraints and Guardrails - Telling the LLM what not to do, what answers not to give.
+
 # Multi-Agent System Workshop
 
 A simple, hands-on multi-agent system built from scratch. Perfect for learning how agents work and adding your own!
@@ -5,6 +17,7 @@ A simple, hands-on multi-agent system built from scratch. Perfect for learning h
 ## 🎯 What This Is
 
 This is a simplified multi-agent system where:
+
 - **Agents** are independent components that handle specific tasks
 - **Orchestrator** routes queries to the right agent
 - **Base Classes** make it easy to create new agents
@@ -68,6 +81,7 @@ Python-Vanila-MultiAgent-Workshop/
 ### Agent Structure
 
 Every agent must:
+
 - Inherit from `BaseAgent`
 - Implement `get_capabilities()` - describe what it can do
 - Implement `process()` - handle the main logic
@@ -87,21 +101,21 @@ class MyCustomAgent(BaseAgent):
     def __init__(self, api_key: str):
         super().__init__(name="MyCustomAgent", api_key=api_key)
         # Initialize any resources you need
-    
+
     def get_capabilities(self) -> List[str]:
         return [
             "Does something specific",
             "Handles certain queries",
         ]
-    
+
     async def process(self, input_data: Dict[str, Any]) -> AgentResult:
         query = input_data.get("query", "")
         context = input_data.get("context", {})
         files = input_data.get("files", {})
-        
+
         # Your agent logic here
         result_data = {"my_result": "something"}
-        
+
         return AgentResult(
             success=True,
             data=result_data,
@@ -121,7 +135,7 @@ from .my_agent import MyCustomAgent
 class AgentOrchestrator:
     def __init__(self, api_key: str):
         # ... existing code ...
-        
+
         self.agents: Dict[str, BaseAgent] = {
             "CodeInterpreter": CodeInterpreterAgent(api_key),
             "AnswerSynthesiser": AnswerSynthesiserAgent(api_key),
@@ -136,11 +150,11 @@ If you want the orchestrator to automatically route to your agent, update the `_
 ```python
 def _determine_start_agent(self, message: str, files: Optional[Dict[str, str]]) -> str:
     message_lower = message.lower()
-    
+
     # Add your routing logic
     if "my keyword" in message_lower:
         return "MyCustomAgent"
-    
+
     # ... existing routing logic ...
 ```
 
@@ -163,26 +177,26 @@ from typing import Dict, Any, List
 class GreetingAgent(BaseAgent):
     def __init__(self, api_key: str):
         super().__init__(name="GreetingAgent", api_key=api_key)
-    
+
     def get_capabilities(self) -> List[str]:
         return [
             "Handle greetings and casual conversation",
             "Respond to hello, hi, thanks, etc.",
         ]
-    
+
     async def process(self, input_data: Dict[str, Any]) -> AgentResult:
         query = input_data.get("query", "").lower()
-        
+
         greetings = ["hello", "hi", "hey", "greetings"]
         thanks = ["thanks", "thank you", "appreciate"]
-        
+
         if any(g in query for g in greetings):
             response = "Hello! How can I help you today?"
         elif any(t in query for t in thanks):
             response = "You're welcome! Is there anything else I can help with?"
         else:
             response = "Hi there! What would you like to know?"
-        
+
         return AgentResult(
             success=True,
             data={"greeting": response},
@@ -209,10 +223,10 @@ self.agents: Dict[str, BaseAgent] = {
 ```python
 def _determine_start_agent(self, message: str, files: Optional[Dict[str, str]]) -> str:
     message_lower = message.lower()
-    
+
     if any(word in message_lower for word in ["hello", "hi", "hey", "thanks"]):
         return "GreetingAgent"
-    
+
     # ... rest of routing ...
 ```
 
@@ -241,11 +255,11 @@ Agents receive context from previous agents:
 ```python
 async def process(self, input_data: Dict[str, Any]) -> AgentResult:
     context = input_data.get("context", {})
-    
+
     # Access previous agent's data
     code_data = context.get("codeinterpreter_data", {})
     viz_data = context.get("visualizationagent_data", {})
-    
+
     # Use the data in your processing
     # ...
 ```
@@ -281,14 +295,17 @@ When you return data, it's automatically added to context with the key `{agent_n
 ## 🐛 Troubleshooting
 
 **Agent not found?**
+
 - Make sure you registered it in `orchestrator.py`
 - Check the agent name matches exactly
 
 **Agent not being called?**
+
 - Update routing logic in `_determine_start_agent()`
 - Or explicitly set `start_agent` when calling `process_query()`
 
 **Context not working?**
+
 - Make sure you're accessing context with the right key: `{agent_name.lower()}_data`
 - Check that previous agents are returning data in their results
 
@@ -303,10 +320,10 @@ When you return data, it's automatically added to context with the key `{agent_n
 ## 🤝 Contributing
 
 This is a workshop project! Feel free to:
+
 - Add your own agents
 - Improve existing agents
 - Add features
 - Share your creations
 
 Happy coding! 🚀
-
