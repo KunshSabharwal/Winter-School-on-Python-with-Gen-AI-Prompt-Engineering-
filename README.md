@@ -30,13 +30,13 @@ This is a simplified multi-agent system where:
 ```bash
 # Create virtual environment
 python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+venv\Scripts\Activate.ps1
 
 # Install dependencies
 pip install -r requirements.txt
 
 # Set your Gemini API key
-export GEMINI_API_KEY="your-api-key-here"
+$env:GEMINI_API_KEY="YOUR_API_KEY_HERE"
 ```
 
 ### 2. Run the Server
@@ -86,3 +86,17 @@ Every agent must:
 - Implement `get_capabilities()` - describe what it can do
 - Implement `process()` - handle the main logic
 - Return an `AgentResult` with success, data, and optionally next_agent
+
+### This currently has 2 agents:
+
+Available Agents -
+
+- CodeInterpreter
+  - Execute Python code for data analysis
+  - Load and analyze CSV files
+  - Perform statistical analysis
+- AnswerSynthesiser
+  - Answer general questions
+  - Synthesize final answers from analysis
+  - Format responses with markdown
+  - Handle conversational queries
