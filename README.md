@@ -105,16 +105,13 @@ Available Agents -
   - Handle conversational queries
 
 - 3rd Agent Data Visualizer created and added successfully!
-
 - DataVisualizer
-- Purpose: Generate plots/charts from CSV or numerical outputs
-- Features:
-
-  - Bar, line, scatter, or histogram plots
-  - Optionally output plots as base64 images for API responses
-  - Works with CodeInterpreter’s outputs
-
-- Use-case: Turn raw numbers into visual insights for reports or dashboards
+  - Purpose: Generate plots/charts from CSV or numerical outputs
+  - Features:
+    - Bar, line, scatter, or histogram plots
+    - Optionally output plots as base64 images for API responses
+    - Works with CodeInterpreter’s outputs
+  - Use-case: Turn raw numbers into visual insights for reports or dashboards
 
 ### Agents dont follow any fixed standards, they often create and follow their own
 
