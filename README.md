@@ -10,6 +10,12 @@
    Answer should be 90 ( just the number and not an entire line or paragraph like - I pick the number 90 - the line makes it difficult for the user to extract his desired output. )
 4. Setting Constraints and Guardrails - Telling the LLM what not to do, what answers not to give.
 
+#### Zero-Shot prompting -We give the LLM a direct instruction or question to perform a task without providing any examples of how to do it, relying entirely on its pre-trained knowledge
+
+#### Few-Shot prompting - We provide the LLM with a few examples (typically 2-5) of input/output pairs within the prompt itself, teaching it the desired task, format, or style without needing full retraining
+
+#### Chain of Thought prompting - We guides the LLM to solve complex problems by breaking them down into intermediate reasoning steps, mimicking human thought, rather than jumping straight to an answer, which improves accuracy and transparency
+
 # Multi-Agent System Workshop
 
 A simple, hands-on multi-agent system built from scratch. Perfect for learning how agents work and adding your own!
@@ -122,3 +128,20 @@ Available Agents -
 6. Planning - Create a plan and make small checkpoints that are completed and ticked off over time the agent works and the work is done.
 7. The Supervisor - The supervisor makes the call of which agent will work and orchastrates the entire process to get the output, not explicitly doing anything to solve the problem/query itself.
 8. Multi-Agent Collaboration - Multiple agents for multiple tasks and all agents have separate capabilities. We maintain another variable called 'state' to maintain the state of the agent at present to decide which agent gets the memory.
+
+## RAG Systems (Retrieval-Augmented Generation)
+
+- Thanks to @JaskiratSingh for the session on RAG systems and the hands on coding for the Winter School Python with Gen AI_Day-2_Rag-agent Colab notebook.
+
+### Framework and not an architecutre
+
+- Framework that combines the question and the relevant chunks to obtain the answer.
+- The asked question by the user is checked by retriever that retrieves that fixed data from the knowledge base (which is separated and broken down into chunks and embedded into numerical values, each numerical value of a word is mapped to the word itself, which finally passes the word chunks) to the LLM instead of the complete knowledge base at once. Only the relevant chunk of the knowledge base is passed (Context Window Problem - fixed LLM memory causes LLM's to forget crucial details in long chats/conversations leading to errors, hallucinations, and decreased accuracy)
+- There is a slight ovelapping between chunks to build a better connection between them and the selected chunk provides slight context about its previous and next chunks.
+- In the retriever, the number of chunks to retrieve is determined by the top-k parameter, a value that is set by the system designer, not determined automatically by the system itself. A small k risks missing crucial info, while a large k adds computational cost and noise.
+- User query, relevant chunks, system instruction are the 3 most important parts of the context builder (prompt assembly).
+- RAG's take multiple types of data - text, images (text extracted by OCR), videos (text extracted from audio transcripts) and many other types of data.
+
+### Notion document - https://www.notion.so/RAG-Pipeline-with-LangChain-Google-Gemini-and-Agents-2e514dc3f1ec8051835cfb236da43fa9
+
+### Colab Notebook Copy created and added to drive
