@@ -1,6 +1,6 @@
 ## Forked from @https://github.com/Knighthawk-Leo/WorkShopTemplate
 
-### Thanks to @https://github.com/Knighthawk-Leo for the repository and the session
+### Thanks to @https://github.com/Knighthawk-Leo for the repository and the session on Prompt Engineering and AI Agents
 
 # Day 1 -> Prompt Engineering Patterns
 
@@ -98,13 +98,11 @@ Every agent must:
 Available Agents -
 
 - CodeInterpreter
-
   - Execute Python code for data analysis
   - Load and analyze CSV files
   - Perform statistical analysis
 
 - AnswerSynthesiser
-
   - Answer general questions
   - Synthesize final answers from analysis
   - Format responses with markdown
