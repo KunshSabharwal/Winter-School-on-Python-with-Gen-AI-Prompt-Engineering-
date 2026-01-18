@@ -118,6 +118,8 @@ Available Agents -
     - Works with CodeInterpreter’s outputs
   - Use-case: Turn raw numbers into visual insights for reports or dashboards
 
+### To use the new agent (DataVisualizer), take any csv or excel file with some numeric data to plot, asking the agent to create a bar/line graph/chart from 2 specific columns, saving the file in the directory folder itself.
+
 ### Agents dont follow any fixed standards, they often create and follow their own
 
 1. Workflow - The flow of data and the generated outputs from one to the other agent from the time the input is given, till the time the final output is generated.
